@@ -21,6 +21,35 @@
             document.location = "index-mobile.html";
         }
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pages = {
+                cs: document.getElementById("aboutme-cs"),
+                ap: document.getElementById("aboutme-ap"),
+                f: document.getElementById("aboutme-f"),
+            };
+
+            document.querySelectorAll(".switch").forEach(button => {
+                button.addEventListener("click", function () {
+                    const targetId = this.getAttribute("data-target"); // Prende l'id di destinazione
+
+                    // Determina l'offset di spostamento in base alla pagina scelta
+                    if (targetId === "aboutme-cs") {
+                        pages.cs.style.transform = "translateX(0)";
+                        pages.ap.style.transform = "translateX(-100%)";
+                        pages.f.style.transform = "translateX(100%)";
+                    } else if (targetId === "aboutme-ap") {
+                        pages.cs.style.transform = "translateX(100%)";
+                        pages.ap.style.transform = "translateX(0)";
+                    } else if (targetId === "aboutme-f") {
+                        pages.cs.style.transform = "translateX(-100%)";
+                        pages.f.style.transform = "translateX(0)";
+                    }
+                });
+            });
+        });
+    </script>
+
     <div class="landing">       
         <div>
             <img src="media/Logo_Ellie_c.svg" alt="Logo Ellie"  class="logo">
@@ -38,39 +67,107 @@
         </div>
         <img src="media/1.png" alt = "divano" class="divano">
     </div>
-    <div class="grid-container-cs">
-        <div>
-            <div class="background-chisono">
-                <div class="titles">Chi sono</div>
+    <div class="aboutme-container">
+        <div id="aboutme-cs" style="min-height: 100%;">
+            <div class="grid-container-cs">
+                <div>
+                    <div class="background-chisono">
+                        <div class="titles">Chi sono</div>
+                    </div>
+                    <div>
+                        Sono <b>Elisa di Caprio</b>, una <b>psicologa</b>, <b>sessuologa</b> e psicoterapeuta in formazione:
+                        attualmente frequento la Scuola di Specializzazione in Psicoterapia Psicodinamica dell'Età Evolutiva IdO MITE.
+                        <br>Impegno le mie competenze e la mia sensibilità affinché le sedute siano uno <b>spazio sicuro</b>, in cui: 
+                        <ul>
+                            <li>potersi conoscere, per attingere alle proprie risorse e affrontare le difficoltà</li>
+                            <li>contattare le parti di sé che hanno bisogno di essere viste e accolte</li>
+                            <li>intraprendere un percorso che, tramite una rilettura dei sintomi, permetta la comprensione del malessere e della sofferenza</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-aligned">
+                    <img src="media/15 Profilo Web.png" alt = "portrait" class="protrait">
+                    <div>
+                        Iscritta nella sezione A <br>
+                        dell'Albo degli Psicologi <br>
+                        del Lazio dal 28/02/2022 <br>
+                        con il n. 27219.
+                    </div>
+                </div>
             </div>
-            <div>
-                Sono <b>Elisa di Caprio</b>, una <b>psicologa</b>, <b>sessuologa</b> e psicoterapeuta in formazione: attualmente frequento la Scuola di Specializzazione in Psicoterapia Psicodinamica dell’Età Evolutiva IdO MITE.
-                Impegno le mie competenze e la mia sensibilità affinché le sedute siano uno <b>spazio sicuro</b>, in cui: 
-                <ul>
-                    <li>potersi conoscere, per attingere alle proprie risorse e affrontare le difficoltà</li>
-                    <li>contattare le parti di sé che hanno bisogno di essere viste e accolte</li>
-                    <li>intraprendere un percorso che, tramite una rilettura dei sintomi, permetta la comprensione del malessere e della sofferenza</li>
-                </ul>
-            </div>
+            <div class="grid-container-cs">
+                <div class="background-left switch"  data-target="aboutme-ap">
+                    <div class="titles">Approccio</div>
+                </div>
+                <div class="background-right switch"  data-target="aboutme-f">
+                    <div class="titles right-aligned">Formazione</div>
+                </div>
+            </div>    
         </div>
-        <div class="right-aligned">
-            <img src="media/15 Profilo Web.png" alt = "portrait" class="protrait">
-            <div>
-                Iscritta nella sezione A <br>
-                dell'Albo degli Psicologi <br>
-                del Lazio dal 28/02/2022 <br>
-                con il n. 27219.
+        <div id="aboutme-ap" style="min-height: 100%;">
+            <div class="grid-container-cs">
+                <div>
+                    <div class="background-approccio">
+                        <div class="titles">Approccio<br>Psicodinamico</div>
+                    </div>
+                    <div>
+                        Il mio approccio prevede:
+                        <ul>
+                            <li>un ascolto autentico di ciò che appartiene al mondo della coscienza, ovvero i racconti e la storia che 
+                                il/la paziente porta nella stanza di terapia,
+                            </li>
+                            <li>e contemporaneamente una comprensione di ciò che si vive nel profondo, ovvero l'insieme di elementi che 
+                                derivano in parte dal presente, in parte dal passato, e che si muovono (come correnti subacquee), 
+                                apparentemente invisibili, influenzando la propria vita in superficie, e che quando non sono ascoltati, 
+                                si manifestano tramite sintomi di varia natura e difficoltà psicologiche e/o fisiche.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center-aligned">
+                    <img src="media/8.png" alt = "bussola" class="protrait" style="margin: 0;">
+                </div>
             </div>
+            <div class="grid-container-cs">
+                <div></div>
+                <div class="background-right switch" data-target="aboutme-cs">
+                    <div class="titles right-aligned">Chi Sono</div>
+                </div>
+            </div>  
+        </div>
+        <div id="aboutme-f" style="min-height: 100%;">
+            <div class="grid-container-cs">
+                <div>
+                    <div class="background-approccio">
+                        <div class="titles">Formazione</div>
+                    </div>
+                    <div>
+                        Il mio approccio prevede:
+                        <ul>
+                            <li>un ascolto autentico di ciò che appartiene al mondo della coscienza, ovvero i racconti e la storia che 
+                                il/la paziente porta nella stanza di terapia,
+                            </li>
+                            <li>e contemporaneamente una comprensione di ciò che si vive nel profondo, ovvero l'insieme di elementi che 
+                                derivano in parte dal presente, in parte dal passato, e che si muovono (come correnti subacquee), 
+                                apparentemente invisibili, influenzando la propria vita in superficie, e che quando non sono ascoltati, 
+                                si manifestano tramite sintomi di varia natura e difficoltà psicologiche e/o fisiche.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center-aligned">
+                    <img src="media/8.png" alt = "bussola" class="protrait" style="margin: 0;">
+                </div>
+            </div>
+            <div class="grid-container-cs">
+                <div class="background-left switch" data-target="aboutme-cs">
+                    <div class="titles">Chi sono</div>
+                </div>
+            </div>  
         </div>
     </div>
-    <div class="grid-container-cs">
-        <div class="background-approccio">
-            <div class="titles">Approccio</div>
-        </div>
-        <div class="background-formazione">
-            <div class="titles right-aligned">Formazione</div>
-        </div>
-    </div>
+</body>
+
 <!--
     <div class="grid-container-bro">
         <div class="psico">PSI<br>CO<br>LO<br>GIA</div>

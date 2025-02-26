@@ -75,8 +75,17 @@ body, html {
   padding: 0 5% 2% 0;
   margin: 0 0 5% 0;
 }
+.background-approccio{
+  position: relative;
+  display: inline-block; 
+  background-image: url('media/9.png');
+  background-size: 25% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  margin: 0 0 5% 0;
+}
 
-.background-approccio {
+.background-left {
   position: relative;
   display: inline-block;
   background-image: url('media/6.png');
@@ -84,10 +93,11 @@ body, html {
   background-repeat: no-repeat;
   padding: 0 0 2% 7%;
   margin: 0 0 5% 0;
-  width: 25%
+  width: 25%;
+  cursor: pointer;
 }
 
-.background-formazione {
+.background-right {
   position: relative;
   display: inline-block;
   background-image: url('media/7.png');
@@ -96,6 +106,7 @@ body, html {
   background-position: right top;
   padding: 0 12% 2% 0;
   margin: 0 0 5% 0;
+  cursor: pointer;
 }
 
 @keyframes slideInFromLeft {
@@ -116,6 +127,34 @@ body, html {
   }
 }
 
+.aboutme-container {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#aboutme-cs, #aboutme-ap, #aboutme-f {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Posizioni iniziali */
+#aboutme-cs {
+    transform: translateX(0);
+}
+
+#aboutme-ap {
+    transform: translateX(-100%); /* Inizia nascosto a destra */
+}
+
+#aboutme-f {
+    transform: translateX(100%); /* Anche questo inizia fuori dallo schermo */
+}
+
 .grid-container-buttons{
   background-color: var(--green);
   display: grid;
@@ -130,8 +169,8 @@ body, html {
   border-style: solid;
   font-size: 30%;
   color: var(--brown);
-  border-radius: 10px; /* Bordi stondati */
-  padding: 5% 0 5% 0; /* Aggiungi padding per evitare che il contenuto tocchi i bordi */
+  border-radius: 10px; 
+  padding: 5% 0 5% 0;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -151,7 +190,7 @@ body, html {
   line-height: 1.6;
   display: grid;
   grid-template-columns: 60% 40%;
-  margin: 5%
+  margin: 7% 5% 0 5%;
 }
 .grid-container-titles{
   display: grid;
@@ -167,8 +206,16 @@ body, html {
 .right-aligned {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Allinea gli elementi al margine destro */
-  justify-content: center; /* Centra verticalmente gli elementi */
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.center-aligned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Aggiungi questa proprietà */
+  width: 100%;  /* Aggiungi questa proprietà */
 }
 
 
