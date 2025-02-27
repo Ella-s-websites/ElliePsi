@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+
+$green: #C3C9AA;
+$ocra: #F3EDDA;
+$brown: #482A0E;
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: "Hanken Grotesk", sans-serif;
+  background-color: $ocra;
+  scroll-behavior: smooth;
+}
+
+/*
+SECTION: animations
+*/
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/*
+SECTION: backgrounds
+*/
+
+$bg-images: (
+//name:       (image         , size     , position     , padding      , margin      )
+  chisono:    ('media/3.png' , 30% auto , right bottom , 0% 5% 2% 0%  , 0% 0% 5% 0% ),
+  approccio:  ('media/9.png' , 25% auto , right top    , null         , 0% 0% 5% 0% ),
+  formazione: ('media/11.png', 23% auto , right 80%    , 0% 5% 0% 0%  , 0% 0% 5% 0% ),
+  dove:       ('media/15.png', 23% auto , right top    , 0% 2% 0% 0%  , 5% 0% 3% 5% ),
+  left:       ('media/6.png' , 20% auto , left center  , 0% 0% 2% 7%  , 0% 0% 5% 0% ),
+  right:      ('media/7.png' , 10% auto , right top    , 0% 12% 2% 0% , 0% 0% 5% 0% )
+);
+
+@mixin background-style($image, $size, $position, $padding:null, $margin:null) {
+  position: relative;
+  display: inline-block;
+  background-image: url($image);
+  background-size: $size;
+  background-repeat: no-repeat;
+  background-position: $position;
+  @if $padding {padding: $padding};
+  @if $margin {margin: $margin};
+}
+
+@each $name, $values in $bg-images {
+  .background-#{$name} {
+    @include background-style(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5));
+  }
+}
+
+.background-dove {
+  font-size: 120%;
+}
+
+.background-left {
+  width: 25%;
+  cursor: pointer;
+}
+
+.background-right {
+  cursor: pointer;
+}
+
+/*
+SECTION: grid containers
+*/
+
+$grids: (
+//name:       (columns   , gap  , margin      , font-size , line-height)
+  landing:    (50% 50%   , null , null        , null      , null       ),
+  buttons:    (auto auto , 15%  , null        , null      , null       ),
+  formazione: (30% 70%   , null , null        , null      , null       ),
+  cs:         (60% 40%   , null , 7% 5% 0 5%  , 120%      , 1.6        ),
+  titles:     (50% 50%   , null , null        , null      , null       ),
+  online:     (40% 60%   , 10%  , 5% 5% 0 5%  , 140%      , 1.6        )
+); 
+
+
+@mixin grid-layout($columns, $gap: null, $margin: null, $font-size: null, $line-height: null) {
+  display: grid;
+  grid-template-columns: $columns;
+  @if $gap { column-gap: $gap; }
+  @if $margin { margin: $margin; }
+  @if $font-size { font-size: $font-size; }
+  @if $line-height { line-height: $line-height; }
+}
+
+@each $name, $values in $grids {
+  .grid-container-#{$name} {
+    @include grid-layout(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5));
+  }
+}
+
+.grid-container-landing {
+  background-color: $green;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grid-container-buttons {
+  background-color: $green;
+  margin-top: 10%;
+}
+
+.grid-container-online > div:nth-child(1) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*
+SECTION: icons
+*/
+$icons: (
+//name:         (width, height, margin     , padding     , position , bottom , right , animation                          , justify-self)
+  titles-icons: (50%  , auto  , null       , null        , null     , null   , null  , null                               , end         ),
+  logo:         (30%  , auto  , null       , 16% 0 0 4%  , null     , null   , null  , 1s ease-out 0s 1 slideInFromLeft   , null        ),
+  divano:       (20%  , auto  , null       , null        , absolute , 15%    , 10%   , 1s ease-out 0s 1 slideInFromTop    , null        ),
+  libri:        (50%  , auto  , 15% 0 0 0  , null        , null     , null   , null  , null                               , null        ),
+  protrait:     (40%  , auto  , 0 0 10% 0  , null        , null     , null   , null  , null                               , null        ),
+  location:     (50%  , auto  , null       , null        , null     , null   , null  , null                               , null        )
+);
+
+@mixin icon-style($width, $height: auto, $margin: null, $padding: null, $position: null, $bottom: null, $right: null, $animation: null, $justify-self: null) {
+  width: $width;
+  height: $height;
+  @if $margin { margin: $margin; }
+  @if $padding { padding: $padding; }
+  @if $position { position: $position; }
+  @if $bottom { bottom: $bottom; }
+  @if $right { right: $right; }
+  @if $animation { animation: $animation; }
+  @if $justify-self { justify-self: $justify-self; }
+}
+
+@each $name, $values in $icons {
+  .#{$name} {
+    @include icon-style(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5), nth($values, 6), nth($values, 7), nth($values, 8), nth($values, 9));
+  }
+}
+
+//TODO: da ottimizzare
+.home { 
+  color: black;
+  font-family: 'Playfair Display';
+  font-size: 400%;
+  margin: 0% 10% 10% 10%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+.subtitle{
+  font-size: 50%;
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+  color: $brown;
+  margin: 3% 3% 3% 3%;
+}
+
+.titles{
+  font-weight: 600;
+  font-size: 170%;
+}
+
+
+.aboutme-container {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.aboutme-container-green {
+  background-color: $green;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.squared-container{
+  background-color: $ocra;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content; 
+  margin: 0 10% 0 10%;
+}
+
+#aboutme-cs, #aboutme-ap, #aboutme-f {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Posizioni iniziali */
+#aboutme-cs {
+    transform: translateX(0);
+}
+
+#aboutme-ap {
+    transform: translateX(-100%); /* Inizia nascosto a destra */
+}
+
+#aboutme-f {
+    transform: translateX(100%); /* Anche questo inizia fuori dallo schermo */
+}
+
+.button {
+  background-color: $ocra;
+  border-color: $ocra;
+  border-style: solid;
+  font-size: 30%;
+  color: $brown;
+  border-radius: 10px; 
+  padding: 5% 0 5% 0;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.right-aligned {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.text-formazione{
+  margin: 5% 5% 0 5%;
+  line-height: 1.7;
+  font-size: 120%;
+  text-align: right;
+}
+
+.center-aligned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
