@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: "Hanken Grotesk", sans-serif;
+  background-color: #F3EDDA;
+  scroll-behavior: smooth;
+}
+
+/*
+SECTION: animations
+*/
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/*
+SECTION: backgrounds
+*/
+.background-chisono {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/3.png");
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  padding: 0% 5% 2% 0%;
+  margin: 0% 0% 5% 0%;
+}
+
+.background-approccio {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/9.png");
+  background-size: 25% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  margin: 0% 0% 5% 0%;
+}
+
+.background-formazione {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/11.png");
+  background-size: 23% auto;
+  background-repeat: no-repeat;
+  background-position: right 80%;
+  padding: 0% 5% 0% 0%;
+  margin: 0% 0% 5% 0%;
+}
+
+.background-dove {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/15.png");
+  background-size: 23% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding: 0% 2% 0% 0%;
+  margin: 5% 0% 3% 5%;
+}
+
+.background-left {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/6.png");
+  background-size: 20% auto;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding: 0% 0% 2% 7%;
+  margin: 0% 0% 5% 0%;
+}
+
+.background-right {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/7.png");
+  background-size: 10% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding: 0% 12% 2% 0%;
+  margin: 0% 0% 5% 0%;
+}
+
+.background-dove {
+  font-size: 120%;
+}
+
+.background-left {
+  width: 25%;
+  cursor: pointer;
+}
+
+.background-right {
+  cursor: pointer;
+}
+
+/*
+SECTION: grid containers
+*/
+.grid-container-landing {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.grid-container-buttons {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 15%;
+}
+
+.grid-container-formazione {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.grid-container-cs {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  margin: 7% 5% 0 5%;
+  font-size: 120%;
+  line-height: 1.6;
+}
+
+.grid-container-titles {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.grid-container-online {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  column-gap: 10%;
+  margin: 5% 5% 0 5%;
+  font-size: 140%;
+  line-height: 1.6;
+}
+
+.grid-container-landing {
+  background-color: #C3C9AA;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grid-container-buttons {
+  background-color: #C3C9AA;
+  margin-top: 10%;
+}
+
+.grid-container-online > div:nth-child(1) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*
+SECTION: icons
+*/
+.titles-icons {
+  width: 50%;
+  height: auto;
+  justify-self: end;
+}
+
+.logo {
+  width: 30%;
+  height: auto;
+  padding: 16% 0 0 4%;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+.divano {
+  width: 20%;
+  height: auto;
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.libri {
+  width: 50%;
+  height: auto;
+  margin: 15% 0 0 0;
+}
+
+.protrait {
+  width: 40%;
+  height: auto;
+  margin: 0 0 10% 0;
+}
+
+.location {
+  width: 50%;
+  height: auto;
+}
+
+.home {
+  color: black;
+  font-family: "Playfair Display";
+  font-size: 400%;
+  margin: 0% 10% 10% 10%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+.subtitle {
+  font-size: 50%;
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+  color: #482A0E;
+  margin: 3% 3% 3% 3%;
+}
+
+.titles {
+  font-weight: 600;
+  font-size: 170%;
+}
+
+.aboutme-container {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.aboutme-container-green {
+  background-color: #C3C9AA;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.squared-container {
+  background-color: #F3EDDA;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  margin: 0 10% 0 10%;
+}
+
+#aboutme-cs, #aboutme-ap, #aboutme-f {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Posizioni iniziali */
+#aboutme-cs {
+  transform: translateX(0);
+}
+
+#aboutme-ap {
+  transform: translateX(-100%); /* Inizia nascosto a destra */
+}
+
+#aboutme-f {
+  transform: translateX(100%); /* Anche questo inizia fuori dallo schermo */
+}
+
+.button {
+  background-color: #F3EDDA;
+  border-color: #F3EDDA;
+  border-style: solid;
+  font-size: 30%;
+  color: #482A0E;
+  border-radius: 10px;
+  padding: 5% 0 5% 0;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.right-aligned {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.text-formazione {
+  margin: 5% 5% 0 5%;
+  line-height: 1.7;
+  font-size: 120%;
+  text-align: right;
+}
+
+.center-aligned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */
