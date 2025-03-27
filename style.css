@@ -215,6 +215,7 @@ SECTION: grid containers
 .grid-container-contatti {
   display: grid;
   grid-template-columns: 70% 40%;
+  font-size: 125%;
   line-height: 1.7;
 }
 
@@ -292,7 +293,7 @@ SECTION: icons
 }
 
 .icon-contatti {
-  width: 50%;
+  width: 60%;
   height: auto;
 }
 
