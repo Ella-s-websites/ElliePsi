@@ -26,6 +26,26 @@ SECTION: animations
     transform: translateY(0);
   }
 }
+#aboutme-cs, #aboutme-ap, #aboutme-f {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.6s ease-in-out;
+}
+
+#aboutme-cs {
+  transform: translateX(0);
+}
+
+#aboutme-ap {
+  transform: translateX(-100%);
+}
+
+#aboutme-f {
+  transform: translateX(100%);
+}
+
 /*
 SECTION: backgrounds
 */
@@ -72,6 +92,17 @@ SECTION: backgrounds
   margin: 5% 0% 3% 5%;
 }
 
+.background-aboutme {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/2.png");
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  padding: 0% 10% 20% 0%;
+  margin: 0% 0% 5% 5%;
+}
+
 .background-left {
   position: relative;
   display: inline-block;
@@ -92,6 +123,17 @@ SECTION: backgrounds
   background-position: right top;
   padding: 0% 12% 2% 0%;
   margin: 0% 0% 5% 0%;
+}
+
+.background-contatti {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/12.png");
+  background-size: 32% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding: 0% 0.5% 2% 0%;
+  margin: 2% 0% 0% 2%;
 }
 
 .background-dove {
@@ -118,7 +160,9 @@ SECTION: grid containers
 .grid-container-buttons {
   display: grid;
   grid-template-columns: auto auto;
-  column-gap: 15%;
+  -moz-column-gap: 15%;
+       column-gap: 15%;
+  margin: 10% 0% 0% 0%;
 }
 
 .grid-container-formazione {
@@ -129,7 +173,7 @@ SECTION: grid containers
 .grid-container-cs {
   display: grid;
   grid-template-columns: 60% 40%;
-  margin: 7% 5% 0 5%;
+  margin: 7% 5% 0% 5%;
   font-size: 120%;
   line-height: 1.6;
 }
@@ -137,15 +181,45 @@ SECTION: grid containers
 .grid-container-titles {
   display: grid;
   grid-template-columns: 50% 50%;
+  margin: 5% 0% 0% 0%;
 }
 
 .grid-container-online {
   display: grid;
   grid-template-columns: 40% 60%;
-  column-gap: 10%;
-  margin: 5% 5% 0 5%;
+  -moz-column-gap: 10%;
+       column-gap: 10%;
+  margin: 5% 5% 0% 5%;
   font-size: 140%;
   line-height: 1.6;
+}
+
+.grid-container-f {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  margin: 5% 5% 0% 5%;
+  font-size: 120%;
+  line-height: 1.6;
+}
+
+.grid-container-dove {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  -moz-column-gap: 10%;
+       column-gap: 10%;
+  margin: 2% 5% 0% 5%;
+  font-size: 120%;
+  line-height: 1.6;
+}
+
+.grid-container-contatti {
+  display: grid;
+  grid-template-columns: 70% 40%;
+  line-height: 1.7;
+}
+
+.grid-container-titles {
+  place-items: center;
 }
 
 .grid-container-landing {
@@ -158,7 +232,6 @@ SECTION: grid containers
 
 .grid-container-buttons {
   background-color: #C3C9AA;
-  margin-top: 10%;
 }
 
 .grid-container-online > div:nth-child(1) {
@@ -203,16 +276,34 @@ SECTION: icons
   margin: 0 0 10% 0;
 }
 
+.bussola {
+  width: 40%;
+  height: auto;
+}
+
 .location {
   width: 50%;
   height: auto;
 }
 
+.windows {
+  width: 60%;
+  height: auto;
+}
+
+.icon-contatti {
+  width: 50%;
+  height: auto;
+}
+
+/*
+SECTION: text
+*/
 .home {
   color: black;
   font-family: "Playfair Display";
   font-size: 400%;
-  margin: 0% 10% 10% 10%;
+  margin: 10% 10% 10% 10%;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   animation: 1s ease-out 0s 1 slideInFromLeft;
 }
@@ -225,23 +316,39 @@ SECTION: icons
 }
 
 .titles {
-  font-weight: 600;
   font-size: 170%;
+  font-weight: 600;
 }
 
-.aboutme-container {
+.titles-bigger {
+  font-size: 200%;
+  font-weight: 600;
+}
+
+.subtitles {
+  font-size: 150%;
+  font-weight: 600;
+}
+
+.text-formazione {
+  margin: 5% 5% 5% 5%;
+  line-height: 1.7;
+  font-size: 120%;
+  text-align: right;
+}
+
+/*
+SECTION: containers
+*/
+.aboutme-container-green, .aboutme-container {
   position: relative;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
 .aboutme-container-green {
   background-color: #C3C9AA;
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
 }
 
 .squared-container {
@@ -251,29 +358,8 @@ SECTION: icons
   padding: 3%;
   display: flex;
   flex-direction: column;
-  max-width: fit-content;
+  max-width: 80%;
   margin: 0 10% 0 10%;
-}
-
-#aboutme-cs, #aboutme-ap, #aboutme-f {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  transition: transform 0.6s ease-in-out;
-}
-
-/* Posizioni iniziali */
-#aboutme-cs {
-  transform: translateX(0);
-}
-
-#aboutme-ap {
-  transform: translateX(-100%); /* Inizia nascosto a destra */
-}
-
-#aboutme-f {
-  transform: translateX(100%); /* Anche questo inizia fuori dallo schermo */
 }
 
 .button {
@@ -287,8 +373,66 @@ SECTION: icons
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  vertical-align: middle;
 }
 
+.distributed-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 120%;
+}
+
+.contact-container {
+  margin: 0% 0% 3% 4%;
+}
+
+/*
+SECTION: righe colorate
+*/
+.tile-1 {
+  height: 100%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFF3;
+}
+
+.tile-2 {
+  height: 100%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  background-color: #F6F8E6;
+}
+
+.tile-3 {
+  height: 100%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  background-color: #ECEFD8;
+}
+
+.tile-4 {
+  height: 100%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  background-color: #E2E6CA;
+}
+
+.tile-5 {
+  height: 100%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  background-color: #D8DDBC;
+}
+
+/*
+SECTION: utilities
+*/
 .right-aligned {
   display: flex;
   flex-direction: column;
@@ -296,11 +440,11 @@ SECTION: icons
   justify-content: center;
 }
 
-.text-formazione {
-  margin: 5% 5% 0 5%;
-  line-height: 1.7;
-  font-size: 120%;
-  text-align: right;
+.left-aligned {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .center-aligned {
@@ -311,4 +455,4 @@ SECTION: icons
   width: 100%;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*TODO: da sistemare*//*# sourceMappingURL=style.css.map */

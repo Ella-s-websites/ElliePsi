@@ -1,8 +1,12 @@
+@use 'sass:list';
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
 
 $green: #C3C9AA;
 $ocra: #F3EDDA;
 $brown: #482A0E;
+$primary-font: 'Playfair Display';
+$base-margin: 3%;
+$base-font-size: 120%;
 
 body, html {
   height: 100%;
@@ -34,19 +38,41 @@ SECTION: animations
   }
 }
 
+#aboutme-cs, #aboutme-ap, #aboutme-f {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.6s ease-in-out;
+}
+
+#aboutme-cs {
+  transform: translateX(0);
+}
+
+#aboutme-ap {
+  transform: translateX(-100%);
+}
+
+#aboutme-f {
+  transform: translateX(100%);
+}
+
 
 /*
 SECTION: backgrounds
 */
 
 $bg-images: (
-//name:       (image         , size     , position     , padding      , margin      )
-  chisono:    ('media/3.png' , 30% auto , right bottom , 0% 5% 2% 0%  , 0% 0% 5% 0% ),
-  approccio:  ('media/9.png' , 25% auto , right top    , null         , 0% 0% 5% 0% ),
-  formazione: ('media/11.png', 23% auto , right 80%    , 0% 5% 0% 0%  , 0% 0% 5% 0% ),
-  dove:       ('media/15.png', 23% auto , right top    , 0% 2% 0% 0%  , 5% 0% 3% 5% ),
-  left:       ('media/6.png' , 20% auto , left center  , 0% 0% 2% 7%  , 0% 0% 5% 0% ),
-  right:      ('media/7.png' , 10% auto , right top    , 0% 12% 2% 0% , 0% 0% 5% 0% )
+//name:       (image         , size     , position     , padding        , margin      )
+  chisono:    ('media/3.png' , 30% auto , right bottom , 0% 5% 2% 0%    , 0% 0% 5% 0% ),
+  approccio:  ('media/9.png' , 25% auto , right top    , null           , 0% 0% 5% 0% ),
+  formazione: ('media/11.png', 23% auto , right 80%    , 0% 5% 0% 0%    , 0% 0% 5% 0% ),
+  dove:       ('media/15.png', 23% auto , right top    , 0% 2% 0% 0%    , 5% 0% 3% 5% ),
+  aboutme:    ('media/2.png' , 50% auto , right bottom , 0% 10% 20% 0%  , 0% 0% 5% 5% ),
+  left:       ('media/6.png' , 20% auto , left center  , 0% 0% 2% 7%    , 0% 0% 5% 0% ),
+  right:      ('media/7.png' , 10% auto , right top    , 0% 12% 2% 0%   , 0% 0% 5% 0% ),
+  contatti:   ('media/12.png', 32% auto , right top    , 0% 0.5% 2% 0%  , 2% 0% 0% 2% )
 );
 
 @mixin background-style($image, $size, $position, $padding:null, $margin:null) {
@@ -62,12 +88,12 @@ $bg-images: (
 
 @each $name, $values in $bg-images {
   .background-#{$name} {
-    @include background-style(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5));
+    @include background-style(list.nth($values, 1), list.nth($values, 2), list.nth($values, 3), list.nth($values, 4), list.nth($values, 5));
   }
 }
 
 .background-dove {
-  font-size: 120%;
+  font-size: $base-font-size;
 }
 
 .background-left {
@@ -84,13 +110,16 @@ SECTION: grid containers
 */
 
 $grids: (
-//name:       (columns   , gap  , margin      , font-size , line-height)
-  landing:    (50% 50%   , null , null        , null      , null       ),
-  buttons:    (auto auto , 15%  , null        , null      , null       ),
-  formazione: (30% 70%   , null , null        , null      , null       ),
-  cs:         (60% 40%   , null , 7% 5% 0 5%  , 120%      , 1.6        ),
-  titles:     (50% 50%   , null , null        , null      , null       ),
-  online:     (40% 60%   , 10%  , 5% 5% 0 5%  , 140%      , 1.6        )
+//name:       (columns   , gap  , margin       , font-size            , line-height)
+  landing:    (50% 50%   , null , null         , null                 , null       ),
+  buttons:    (auto auto , 15%  , 10% 0% 0% 0% , null                 , null       ),
+  formazione: (30% 70%   , null , null         , null                 , null       ),
+  cs:         (60% 40%   , null , 7% 5% 0% 5%  , $base-font-size      , 1.6        ),
+  titles:     (50% 50%   , null , 5% 0% 0% 0%  , null                 , null       ),
+  online:     (40% 60%   , 10%  , 5% 5% 0% 5%  , 140%                 , 1.6        ),
+  f:          (60% 40%   , null , 5% 5% 0% 5%  , $base-font-size      , 1.6        ),
+  dove:       (60% 40%   , 10%  , 2% 5% 0% 5%  , $base-font-size      , 1.6        ),
+  contatti:   (70% 40%   , null , null         , null                 , 1.7       ),
 ); 
 
 
@@ -105,8 +134,12 @@ $grids: (
 
 @each $name, $values in $grids {
   .grid-container-#{$name} {
-    @include grid-layout(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5));
+    @include grid-layout(list.nth($values, 1), list.nth($values, 2), list.nth($values, 3), list.nth($values, 4), list.nth($values, 5));
   }
+}
+
+.grid-container-titles{
+  place-items: center;
 }
 
 .grid-container-landing {
@@ -119,7 +152,6 @@ $grids: (
 
 .grid-container-buttons {
   background-color: $green;
-  margin-top: 10%;
 }
 
 .grid-container-online > div:nth-child(1) {
@@ -131,13 +163,16 @@ $grids: (
 SECTION: icons
 */
 $icons: (
-//name:         (width, height, margin     , padding     , position , bottom , right , animation                          , justify-self)
-  titles-icons: (50%  , auto  , null       , null        , null     , null   , null  , null                               , end         ),
-  logo:         (30%  , auto  , null       , 16% 0 0 4%  , null     , null   , null  , 1s ease-out 0s 1 slideInFromLeft   , null        ),
-  divano:       (20%  , auto  , null       , null        , absolute , 15%    , 10%   , 1s ease-out 0s 1 slideInFromTop    , null        ),
-  libri:        (50%  , auto  , 15% 0 0 0  , null        , null     , null   , null  , null                               , null        ),
-  protrait:     (40%  , auto  , 0 0 10% 0  , null        , null     , null   , null  , null                               , null        ),
-  location:     (50%  , auto  , null       , null        , null     , null   , null  , null                               , null        )
+//name:          (width, height, margin     , padding     , position , bottom , right , animation                          , justify-self)
+  titles-icons:  (50%  , auto  , null       , null        , null     , null   , null  , null                               , end         ),
+  logo:          (30%  , auto  , null       , 16% 0 0 4%  , null     , null   , null  , 1s ease-out 0s 1 slideInFromLeft   , null        ),
+  divano:        (20%  , auto  , null       , null        , absolute , 15%    , 10%   , 1s ease-out 0s 1 slideInFromTop    , null        ),
+  libri:         (50%  , auto  , 15% 0 0 0  , null        , null     , null   , null  , null                               , null        ),
+  protrait:      (40%  , auto  , 0 0 10% 0  , null        , null     , null   , null  , null                               , null        ),
+  bussola:       (40%  , auto  , null       , null        , null     , null   , null  , null                               , null        ),
+  location:      (50%  , auto  , null       , null        , null     , null   , null  , null                               , null        ),
+  windows:       (60%  , auto  , null       , null        , null     , null   , null  , null                               , null        ), 
+  icon-contatti: (50%  , auto  , null       , null        , null     , null   , null  , null                               , null        ),
 );
 
 @mixin icon-style($width, $height: auto, $margin: null, $padding: null, $position: null, $bottom: null, $right: null, $animation: null, $justify-self: null) {
@@ -154,45 +189,77 @@ $icons: (
 
 @each $name, $values in $icons {
   .#{$name} {
-    @include icon-style(nth($values, 1), nth($values, 2), nth($values, 3), nth($values, 4), nth($values, 5), nth($values, 6), nth($values, 7), nth($values, 8), nth($values, 9));
+    @include icon-style(list.nth($values, 1), list.nth($values, 2), list.nth($values, 3), list.nth($values, 4), list.nth($values, 5), list.nth($values, 6), list.nth($values, 7), list.nth($values, 8), list.nth($values, 9));
   }
 }
 
-//TODO: da ottimizzare
-.home { 
+/*
+SECTION: text
+*/
+
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 4px, $color: rgba(0, 0, 0, 0.5)) {
+  text-shadow: $x $y $blur $color;
+}
+
+@mixin uniform-margin($size) {
+  margin: $size $size $size $size;
+}
+
+@mixin title-style($size, $weight: 600) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+
+.home {
   color: black;
-  font-family: 'Playfair Display';
+  font-family: $primary-font;
   font-size: 400%;
-  margin: 0% 10% 10% 10%;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  @include uniform-margin(10%);
+  @include text-shadow();
   animation: 1s ease-out 0s 1 slideInFromLeft;
 }
-.subtitle{
+
+.subtitle {
   font-size: 50%;
-  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+  @include text-shadow(0px, 0px, 0px);
   color: $brown;
-  margin: 3% 3% 3% 3%;
+  @include uniform-margin($base-margin);
 }
 
-.titles{
-  font-weight: 600;
-  font-size: 170%;
+.titles {
+  @include title-style(170%);
+}
+.titles-bigger {
+  @include title-style(200%);
+}
+.subtitles {
+  @include title-style(150%);
+}
+.text-formazione {
+  @include uniform-margin(5%);
+  line-height: 1.7;
+  font-size: $base-font-size;
+  text-align: right;
 }
 
+/*
+SECTION: containers
+*/
+%base-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
 .aboutme-container {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
+  @extend %base-container;
 }
 
 .aboutme-container-green {
+  @extend %base-container;
   background-color: $green;
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
 }
 
 .squared-container{
@@ -202,29 +269,8 @@ $icons: (
   padding: 3%;
   display: flex;
   flex-direction: column;
-  max-width: fit-content; 
+  max-width: 80%; 
   margin: 0 10% 0 10%;
-}
-
-#aboutme-cs, #aboutme-ap, #aboutme-f {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    transition: transform 0.6s ease-in-out;
-}
-
-/* Posizioni iniziali */
-#aboutme-cs {
-    transform: translateX(0);
-}
-
-#aboutme-ap {
-    transform: translateX(-100%); /* Inizia nascosto a destra */
-}
-
-#aboutme-f {
-    transform: translateX(100%); /* Anche questo inizia fuori dallo schermo */
 }
 
 .button {
@@ -238,22 +284,63 @@ $icons: (
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  vertical-align:middle
+}
+
+.distributed-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 120%;
+}
+
+.contact-container{
+  margin: 0% 0% 3% 4%;
+}
+
+/*
+SECTION: righe colorate
+*/
+$icons: (
+  //name: (background-color)
+  tile-1: (#FFFFF3),
+  tile-2: (#F6F8E6),
+  tile-3: (#ECEFD8),
+  tile-4: (#E2E6CA),
+  tile-5: (#D8DDBC),
+);
+
+@mixin icon-style($background-color) {
+  background-color: $background-color;
+}
+
+@each $name, $values in $icons {
+  .#{$name} {
+    height: 100%;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    @include icon-style(list.nth($values, 1));
+  }
 }
 
 
+/*
+SECTION: utilities
+*/
 .right-aligned {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
 }
-
-.text-formazione{
-  margin: 5% 5% 0 5%;
-  line-height: 1.7;
-  font-size: 120%;
-  text-align: right;
+.left-aligned {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
+
 
 .center-aligned {
   display: flex;
@@ -262,3 +349,6 @@ $icons: (
   height: 100%;
   width: 100%;
 }
+
+/*TODO: da sistemare*/
+
