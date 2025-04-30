@@ -136,6 +136,17 @@ SECTION: backgrounds
   margin: 2% 0% 0% 2%;
 }
 
+.background-scrivimi {
+  position: relative;
+  display: inline-block;
+  background-image: url("media/13.png");
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding: 1% 3% 0% 0%;
+  margin: 2% 0% 0% 2%;
+}
+
 .background-dove {
   font-size: 120%;
 }
@@ -182,6 +193,7 @@ SECTION: grid containers
   display: grid;
   grid-template-columns: 50% 50%;
   margin: 5% 0% 0% 0%;
+  place-items: center;
 }
 
 .grid-container-online {
@@ -219,7 +231,35 @@ SECTION: grid containers
   line-height: 1.7;
 }
 
-.grid-container-titles {
+.grid-container-form {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  -moz-column-gap: 2%;
+       column-gap: 2%;
+  margin: 3% 5% 0% 5%;
+  place-items: center;
+}
+
+.grid-container-button {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  -moz-column-gap: 2%;
+       column-gap: 2%;
+  margin: 5% 5% 0% 5%;
+  place-items: center;
+}
+
+.grid-container-submit {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  margin: 5% 5% 0% 5%;
+  place-items: center;
+}
+
+.grid-container-msg {
+  display: grid;
+  grid-template-columns: 100% 0%;
+  margin: 5% 5% 0% 5%;
   place-items: center;
 }
 
@@ -331,11 +371,20 @@ SECTION: text
   font-weight: 600;
 }
 
+.form-titles {
+  font-size: 120%;
+  font-weight: 600;
+}
+
 .text-formazione {
   margin: 5% 5% 5% 5%;
   line-height: 1.7;
   font-size: 120%;
   text-align: right;
+}
+
+.subtitle-contattami {
+  margin: 1% 0 0 2%;
 }
 
 /*
@@ -355,12 +404,39 @@ SECTION: containers
 .squared-container {
   background-color: #F3EDDA;
   border-radius: 15px;
+  border-color: #F3EDDA;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 3%;
   display: flex;
   flex-direction: column;
-  max-width: 80%;
   margin: 0 10% 0 10%;
+  max-width: 80%;
+}
+
+.squared-container-green {
+  background-color: #C3C9AA;
+  border-radius: 15px;
+  border-color: #C3C9AA;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10% 0 10%;
+  margin: 2%;
+}
+
+.form-squared-container {
+  background-color: #F3EDDA;
+  border-radius: 15px;
+  border-color: #F3EDDA;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10% 0 10%;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .button {
@@ -375,6 +451,20 @@ SECTION: containers
   text-decoration: none;
   cursor: pointer;
   vertical-align: middle;
+}
+
+.submit-button {
+  background-color: #F3EDDA;
+  border-color: #F3EDDA;
+  border-style: solid;
+  font-size: 100%;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10% 30% 10% 30%;
 }
 
 .distributed-list {
@@ -456,4 +546,89 @@ SECTION: utilities
   width: 100%;
 }
 
-/*TODO: da sistemare*//*# sourceMappingURL=style.css.map */
+/*TODO: da sistemare*/
+fieldset {
+  background-color: #C3C9AA;
+  border: none;
+  width: 100%;
+}
+
+input {
+  border: none;
+}
+
+p {
+  margin: 0% 1% 1% 0;
+}
+
+/*header*/
+/* Styling for the navigation menu container */
+.nav-links {
+  display: flex; /* Using flexbox for a horizontal menu layout */
+  align-items: center; /* Aligning the menu items vertically in the center */
+  background: #F3EDDA; /* White background for the menu */
+  padding: 2% 1%; /* Padding around the menu for spacing */
+  border-radius: 12px; /* Soft rounded corners for a modern look */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for a 3D floating effect */
+  margin: 5%;
+}
+
+/* Styling for individual menu items (li) */
+.nav-links li {
+  list-style: none; /* Removing default list styles (bullets) */
+  margin: 0 12px; /* Adding space between menu items */
+}
+
+/* Styling for the links inside the navigation menu */
+.nav-links li a {
+  position: relative; /* For positioning the hover effect */
+  color: #5A3E36; /* Warm brown text color for a friendly, natural look */
+  font-size: 20px; /* Font size for readability */
+  font-weight: 500; /* Medium weight for a balanced look */
+  padding: 6px 0; /* Padding for clickable area around the text */
+  text-decoration: none; /* Removing the default underline from links */
+}
+
+/* Hover effect for menu links - underlining animation */
+.nav-links li a:before {
+  content: ""; /* Empty content for the underline effect */
+  position: absolute; /* Positioning relative to the link */
+  bottom: 0; /* Placing the line at the bottom of the link */
+  left: 0; /* Starting from the left */
+  height: 3px; /* Height of the underline */
+  width: 0%; /* Initial width (invisible) */
+  background: #FFB830; /* Warm yellow underline to match the friendly pet care vibe */
+  border-radius: 12px; /* Rounded corners for the line */
+  transition: all 0.4s ease; /* Smooth transition for the animation */
+}
+
+/* Hover state - animates the underline to grow across the link */
+.nav-links li a:hover:before {
+  width: 100%; /* Expands the line to cover the entire link */
+}
+
+/* Special animation for the 'center' link (About Us) */
+.nav-links li.center a:before {
+  left: 50%; /* Start from the center */
+  transform: translateX(-50%); /* Adjust position to keep it centered */
+}
+
+/* Hover effect for the 'upward' link - makes the line visible and moves it up */
+.nav-links li.upward a:hover:before {
+  bottom: 0px; /* Moves the line to the bottom of the link */
+  opacity: 1; /* Makes the line visible */
+}
+
+/* Special animation for the 'forward' link (Contact) */
+.nav-links li.forward a:before {
+  width: 100%; /* Full width line */
+  transform: scaleX(0); /* Initially scaled to 0 (invisible) */
+  transform-origin: right; /* Starting from the right */
+  transition: transform 0.4s ease; /* Smooth scaling effect */
+}
+
+/* Hover effect for the 'forward' link - scales the line to full width */
+.nav-links li.forward a:hover:before {
+  transform: scaleX(1); /* Expands the line to full width */
+  transform-origin: left; /* Expands from left to right */
+}/*# sourceMappingURL=style.css.map */

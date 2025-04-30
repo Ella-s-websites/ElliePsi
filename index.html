@@ -9,7 +9,6 @@
     <meta name="keywords" content="Elisa di Caprio, ">
     <link rel="stylesheet" href="style.css" media="screen">
 </head>
-
 <body id="main" class="main">
     <script>
 
@@ -49,9 +48,27 @@
             });
         });
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+    <script>
+        $('#bootstrapForm').submit(function (event) {
+            event.preventDefault()
+            var extraData = {}
+            $('#bootstrapForm').ajaxSubmit({
+                data: extraData,
+                dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+                error: function () {
+                    // Submit of form should be successful but JSONP callback will fail because Google Forms
+                    // does not support it, so this is handled as a failure.
+                    alert('Form Submitted. Thanks.')
+                    // You can also redirect the user to a custom thank-you page:
+                    // window.location = 'http://www.mydomain.com/thankyoupage.html'
+                }
+            })
+        })
+    </script>
     <div class="grid-container-landing">       
-        <div>
+        <div>        
             <img src="media/Logo_Ellie_c.svg" alt="Logo Ellie"  class="logo">
             <div class="home">
                 <div>Dott.sa.<br/>Elisa di Caprio</div>
@@ -65,7 +82,19 @@
                 </div>
             </div>
         </div>
-        <img src="media/1.png" alt = "divano" class="divano">
+        <div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="center"><a href="#">Chi sono</a></li>
+                    <li class="center"><a href="#">Dove incontrarci</a></li>
+                    <li class="center"><a href="#">Percorsi</a></li>
+                    <li class="center"><a href="#">Contatti</a></li>
+                    <li class="center"><a href="#">Scrivimi</a></li>
+                    <li class="center"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <img src="media/1.png" alt = "divano" class="divano">
+        </div>
     </div>
     <div class="aboutme-container">
         <div id="aboutme-cs">
@@ -253,6 +282,49 @@
             <div class="squared-container center-aligned">
                 <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2971.616745434791!2d12.558312115106535!3d41.85807537922372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132589d8e2f89cb1%3A0xbd8f54c60af31cda!2sVia%20Tuscolana%2C%20859%2C%2000175%20Roma%20RM!5e0!3m2!1sit!2sit!4v1659891636384!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
+        </div>
+    </div>
+    <div class="aboutme-container">
+        <div class="background-scrivimi">
+            <div class="titles-bigger">Scrivimi</div>
+        </div>
+        <div class="subtitle-contattami">Per prenotare un appuntamento o chiedere informazioni</div>
+        <div class="squared-container-green">
+            <form class="aboutme-container" action="https://docs.google.com/forms/d/e/1FAIpQLSeGMDuqvLCsrRKe4zi3JJirDgC43xGqtAm5ObABFlek0h0aOg/formResponse" target="_self" id="bootstrapForm" method="POST">
+                <div class="grid-container-form">
+                    <!-- Field type: "short" id: "708448322" -->
+                    <fieldset>
+                        <legend for="708448322" class="form-titles">Nome</legend>
+                        <input id="1600444314" type="text" name="entry.1600444314" class="form-control form-squared-container" required>
+                    </fieldset>
+                    <!-- Field type: "short" id: "72149090" -->
+                    <fieldset>
+                        <legend for="72149090" class="form-titles">Email</legend>
+                        <input id="951921031" type="text" name="entry.951921031" class="form-control form-squared-container" required>
+                    </fieldset>
+                </div>
+                <div class="grid-container-msg">
+                    <!-- Field type: "paragraph" id: "1351249334" -->
+                    <fieldset>
+                        <legend for="1351249334" class="form-titles">Messaggio</legend>
+                        <p class="help-block">(lascia un recapito telefonico se vuoi essere contattat* via WhatsApp o telefonicamente)</p>
+                        <textarea id="536723878" name="entry.536723878" class="form-control form-squared-container" required></textarea>
+                    </fieldset>
+                </div>
+                <input type="hidden" name="fvv" value="1">
+                <input type="hidden" name="fbzx" value="4129753277993444769">
+                <input type="hidden" name="pageHistory" value="0">
+                <div class="grid-container-submit">
+                    <fieldset>
+                        <legend for="708206638"></legend>
+                            <label>
+                                <input type="checkbox" name="entry.1656008122" value="Acconsento al trattamento dei dati personali ai sensi degli articoli 13-14 del GDPR 2016/679" required>
+                                Acconsento al trattamento dei dati personali ai sensi degli articoli 13-14 del GDPR 2016/679
+                            </label>
+                    </fieldset>
+                    <input class="submit-button" type="submit" value="Invia">
+                </div>
+            </form>
         </div>
     </div>
 </body>

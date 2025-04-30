@@ -72,7 +72,8 @@ $bg-images: (
   aboutme:    ('media/2.png' , 50% auto , right bottom , 0% 10% 20% 0%  , 0% 0% 5% 5% ),
   left:       ('media/6.png' , 20% auto , left center  , 0% 0% 2% 7%    , 0% 0% 5% 0% ),
   right:      ('media/7.png' , 10% auto , right top    , 0% 12% 2% 0%   , 0% 0% 5% 0% ),
-  contatti:   ('media/12.png', 32% auto , right top    , 0% 0.5% 2% 0%  , 2% 0% 0% 2% )
+  contatti:   ('media/12.png', 32% auto , right top    , 0% 0.5% 2% 0%  , 2% 0% 0% 2% ),
+  scrivimi:   ('media/13.png', 30% auto , right top    , 1% 3% 0% 0%    , 2% 0% 0% 2% ),
 );
 
 @mixin background-style($image, $size, $position, $padding:null, $margin:null) {
@@ -110,36 +111,37 @@ SECTION: grid containers
 */
 
 $grids: (
-//name:       (columns   , gap  , margin       , font-size            , line-height)
-  landing:    (50% 50%   , null , null         , null                 , null       ),
-  buttons:    (auto auto , 15%  , 10% 0% 0% 0% , null                 , null       ),
-  formazione: (30% 70%   , null , null         , null                 , null       ),
-  cs:         (60% 40%   , null , 7% 5% 0% 5%  , $base-font-size      , 1.6        ),
-  titles:     (50% 50%   , null , 5% 0% 0% 0%  , null                 , null       ),
-  online:     (40% 60%   , 10%  , 5% 5% 0% 5%  , 140%                 , 1.6        ),
-  f:          (60% 40%   , null , 5% 5% 0% 5%  , $base-font-size      , 1.6        ),
-  dove:       (60% 40%   , 10%  , 2% 5% 0% 5%  , $base-font-size      , 1.6        ),
-  contatti:   (70% 40%   , null , null         , 125%                 , 1.7       ),
+//name:       (columns   , gap  , margin       , font-size            , line-height, place-items),
+  landing:    (50% 50%   , null , null         , null                 , null       , null       ),
+  buttons:    (auto auto , 15%  , 10% 0% 0% 0% , null                 , null       , null       ),
+  formazione: (30% 70%   , null , null         , null                 , null       , null       ),
+  cs:         (60% 40%   , null , 7% 5% 0% 5%  , $base-font-size      , 1.6        , null       ),
+  titles:     (50% 50%   , null , 5% 0% 0% 0%  , null                 , null       , center     ),
+  online:     (40% 60%   , 10%  , 5% 5% 0% 5%  , 140%                 , 1.6        , null       ),
+  f:          (60% 40%   , null , 5% 5% 0% 5%  , $base-font-size      , 1.6        , null       ),
+  dove:       (60% 40%   , 10%  , 2% 5% 0% 5%  , $base-font-size      , 1.6        , null       ),
+  contatti:   (70% 40%   , null , null         , 125%                 , 1.7        , null       ),
+  form:       (49% 49%   , 2%   , 3% 5% 0% 5%  , null                 , null       , center     ),
+  button:     (90% 10%   , 2%   , 5% 5% 0% 5%  , null                 , null       , center     ),
+  submit:     (90% 10%   , null , 5% 5% 0% 5%  , null                 , null       , center       ),
+  msg:        (100% 0%   , null , 5% 5% 0% 5%  , null                 , null       , center     ),
 ); 
 
 
-@mixin grid-layout($columns, $gap: null, $margin: null, $font-size: null, $line-height: null) {
+@mixin grid-layout($columns, $gap: null, $margin: null, $font-size: null, $line-height: null, $place-items: null) {
   display: grid;
   grid-template-columns: $columns;
   @if $gap { column-gap: $gap; }
   @if $margin { margin: $margin; }
   @if $font-size { font-size: $font-size; }
   @if $line-height { line-height: $line-height; }
+  @if $place-items { place-items: $place-items; }
 }
 
 @each $name, $values in $grids {
   .grid-container-#{$name} {
-    @include grid-layout(list.nth($values, 1), list.nth($values, 2), list.nth($values, 3), list.nth($values, 4), list.nth($values, 5));
+    @include grid-layout(list.nth($values, 1), list.nth($values, 2), list.nth($values, 3), list.nth($values, 4), list.nth($values, 5), list.nth($values, 6));
   }
-}
-
-.grid-container-titles{
-  place-items: center;
 }
 
 .grid-container-landing {
@@ -236,12 +238,19 @@ SECTION: text
 .subtitles {
   @include title-style(150%);
 }
+.form-titles {
+  @include title-style(120%);
+}
 .text-formazione {
   @include uniform-margin(5%);
   line-height: 1.7;
   font-size: $base-font-size;
   text-align: right;
 }
+.subtitle-contattami{
+  margin: 1% 0 0 2%;
+}
+
 
 /*
 SECTION: containers
@@ -262,16 +271,33 @@ SECTION: containers
   background-color: $green;
 }
 
-.squared-container{
-  background-color: $ocra;
+@mixin base-squared-container($background-color:$ocra){
+  background-color: $background-color;
   border-radius: 15px;
+  border-color: $background-color;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 3%;
   display: flex;
-  flex-direction: column;
-  max-width: 80%; 
+  flex-direction: column; 
   margin: 0 10% 0 10%;
 }
+
+.squared-container {
+  @include base-squared-container;
+  max-width: 80%;
+}
+.squared-container-green{
+  @include base-squared-container($green);
+  margin: 2%
+}
+
+.form-squared-container {
+  @include base-squared-container;
+  margin:0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 .button {
   background-color: $ocra;
@@ -285,6 +311,20 @@ SECTION: containers
   text-decoration: none;
   cursor: pointer;
   vertical-align:middle
+}
+
+.submit-button {
+  background-color: $ocra;
+  border-color: $ocra;
+  border-style: solid;
+  font-size: 100%;
+  font-weight: bold;
+  border-radius: 10px; 
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10% 30% 10% 30%;
 }
 
 .distributed-list {
@@ -334,13 +374,13 @@ SECTION: utilities
   align-items: flex-end;
   justify-content: center;
 }
+
 .left-aligned {
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
 }
-
 
 .center-aligned {
   display: flex;
@@ -352,3 +392,81 @@ SECTION: utilities
 
 /*TODO: da sistemare*/
 
+fieldset{
+  background-color: $green;
+  border: none;
+  width: 100%;
+}
+
+input{
+  border: none;
+}
+
+p{
+  margin: 0% 1% 1% 0;
+}
+
+/*header*/
+
+/* Styling for the navigation menu container */
+.nav-links {
+  display: flex; /* Using flexbox for a horizontal menu layout */
+  align-items: center; /* Aligning the menu items vertically in the center */
+  background: $ocra; /* White background for the menu */
+  padding: 2% 1%; /* Padding around the menu for spacing */
+  border-radius: 12px; /* Soft rounded corners for a modern look */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for a 3D floating effect */
+  margin: 5%;
+}
+/* Styling for individual menu items (li) */
+.nav-links li {
+  list-style: none; /* Removing default list styles (bullets) */
+  margin: 0 12px; /* Adding space between menu items */
+}
+/* Styling for the links inside the navigation menu */
+.nav-links li a {
+  position: relative; /* For positioning the hover effect */
+  color: #5A3E36; /* Warm brown text color for a friendly, natural look */
+  font-size: 20px; /* Font size for readability */
+  font-weight: 500; /* Medium weight for a balanced look */
+  padding: 6px 0; /* Padding for clickable area around the text */
+  text-decoration: none; /* Removing the default underline from links */
+}
+/* Hover effect for menu links - underlining animation */
+.nav-links li a:before {
+  content: ''; /* Empty content for the underline effect */
+  position: absolute; /* Positioning relative to the link */
+  bottom: 0; /* Placing the line at the bottom of the link */
+  left: 0; /* Starting from the left */
+  height: 3px; /* Height of the underline */
+  width: 0%; /* Initial width (invisible) */
+  background: #FFB830; /* Warm yellow underline to match the friendly pet care vibe */
+  border-radius: 12px; /* Rounded corners for the line */
+  transition: all 0.4s ease; /* Smooth transition for the animation */
+}
+/* Hover state - animates the underline to grow across the link */
+.nav-links li a:hover:before {
+  width: 100%; /* Expands the line to cover the entire link */
+}
+/* Special animation for the 'center' link (About Us) */
+.nav-links li.center a:before {
+  left: 50%; /* Start from the center */
+  transform: translateX(-50%); /* Adjust position to keep it centered */
+}
+/* Hover effect for the 'upward' link - makes the line visible and moves it up */
+.nav-links li.upward a:hover:before {
+  bottom: 0px; /* Moves the line to the bottom of the link */
+  opacity: 1; /* Makes the line visible */
+}
+/* Special animation for the 'forward' link (Contact) */
+.nav-links li.forward a:before {
+  width: 100%; /* Full width line */
+  transform: scaleX(0); /* Initially scaled to 0 (invisible) */
+  transform-origin: right; /* Starting from the right */
+  transition: transform 0.4s ease; /* Smooth scaling effect */
+}
+/* Hover effect for the 'forward' link - scales the line to full width */
+.nav-links li.forward a:hover:before {
+  transform: scaleX(1); /* Expands the line to full width */
+  transform-origin: left; /* Expands from left to right */
+}
